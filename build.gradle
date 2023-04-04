@@ -50,6 +50,27 @@ test {
     useJUnitPlatform()
 }
 
+final YEAR = new Date().format('yyyy')
+
+spotless {
+    java {
+        licenseHeader """
+/* Copyright (c) ${YEAR} Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
+/* This work is licensed under the terms of the MIT license */
+/* found in the root directory of this project. */
+"""
+
+        googleJavaFormat('1.13.0').aosp()
+
+        trimTrailingWhitespace()
+        endWithNewline()
+
+        importOrder('org.qefrc.qelib', 'org.qefrc', 'edu.wpi')
+        removeUnusedImports()
+    }
+}
+
+
 javadoc {
     destinationDir = file('docs/')
 }
