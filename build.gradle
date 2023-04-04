@@ -72,7 +72,7 @@ spotless {
     java {
         licenseHeader """
 /* Copyright (c) ${YEAR} Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
-/* This work is licensed under the terms of the MIT license */
+/* This work is licensed under the terms of the MPL 2.0 license */
 /* found in the root directory of this project. */
 """
 
