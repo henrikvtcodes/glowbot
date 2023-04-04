@@ -1,20 +1,16 @@
-buildscript {
-    ext.WPI_VER = "2023.4.3"
-}
-
 plugins {
     id 'java'
     id "com.diffplug.spotless" version "6.11.0"
     id "com.github.spotbugs" version "5.0.13"
 
-    id 'maven-publish'
+    id "edu.wpi.first.GradleRIO" version "2023.4.3"
 
-    id "edu.wpi.first.GradleRIO" version "${WPI_VER}"
+    id "maven-publish" apply true
 }
 
-apply plugin: 'maven-publish'
-
+project.group = 'com.github.FRC9015'
 group = 'com.github.FRC9015'
+
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -27,6 +23,7 @@ configurations {
 repositories {
     mavenCentral()
     mavenLocal()
+    maven {url "https://jitpack.io/"}
 }
 
 dependencies {
@@ -54,8 +51,8 @@ dependencies {
 publishing {
    publications {
        mavenJava(MavenPublication) {
-        //    groupId = 'frc.qefrc.qelib'
-        //    artifactId = 'library'
+        groupId = 'frc.qefrc'
+        artifactId = 'qelib'
         //    version = "${version}"
 
            from components.java
