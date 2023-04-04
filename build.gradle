@@ -1,12 +1,32 @@
 plugins {
     id 'java'
+    id "com.diffplug.spotless" version "6.11.0"
+    id "com.github.spotbugs" version "5.0.13"
+
+    id 'maven-publish'
+
 }
 
 group 'org.qefrc'
-version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+sourceSets {
+    main {
+        java {
+            srcDir "src"
+        }
+    }
+}
+
+configurations {
+    jaxDoclet
+}
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -14,6 +34,30 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'org.qefrc.qelib'
+            artifactId = 'library'
+            version = "${version}"
+
+            from components.java
+        }
+    }
+}
+
 test {
     useJUnitPlatform()
+}
+
+javadoc {
+    destinationDir = file('docs/')
+}
+
+build {
+    dependsOn javadoc
+}
+
+jar {
+    from sourceSets.main.allSource
 }
