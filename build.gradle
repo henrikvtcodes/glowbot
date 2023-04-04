@@ -4,8 +4,10 @@ plugins {
     id "com.github.spotbugs" version "5.0.13"
 
     id "edu.wpi.first.GradleRIO" version "2023.4.3"
+    id "edu.wpi.first.wpilib.repositories.WPILibRepositoriesPlugin" version "2020.2"
 
     id "maven-publish" apply true
+
 }
 
 project.group = 'com.github.FRC9015'
