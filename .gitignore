@@ -5,6 +5,7 @@ build/
 !**/src/test/**/build/
 
 ### IntelliJ IDEA ###
+.idea/*
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
@@ -18,7 +19,7 @@ out/
 
 ### Eclipse ###
 .apt_generated
-.classpath
+!.classpath
 .factorypath
 .project
 .settings

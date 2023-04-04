@@ -1,3 +1,7 @@
+buildscript {
+    ext.WPI_VER = "2023.4.3"
+}
+
 plugins {
     id 'java'
     id "com.diffplug.spotless" version "6.11.0"
@@ -5,20 +9,14 @@ plugins {
 
     id 'maven-publish'
 
+    id "edu.wpi.first.GradleRIO" version "${WPI_VER}"
 }
 
-group 'org.qefrc'
+apply plugin: 'maven-publish'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
-sourceSets {
-    main {
-        java {
-            srcDir "src"
-        }
-    }
-}
 
 configurations {
     jaxDoclet
@@ -30,20 +28,37 @@ repositories {
 }
 
 dependencies {
+    implementation wpi.java.deps.wpilib()
+    implementation wpi.java.vendor.java()
+
+    nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
+    nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
+    simulationDebug wpi.sim.enableDebug()
+
+    nativeRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.desktop)
+    nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
+    simulationRelease wpi.sim.enableRelease()
+
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.26'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = 'org.qefrc.qelib'
-            artifactId = 'library'
-            version = "${version}"
+   publications {
+       mavenJava(MavenPublication) {
+        //    groupId = 'frc.qefrc.qelib'
+        //    artifactId = 'library'
+        //    version = "${version}"
 
-            from components.java
-        }
-    }
+           from components.java
+       }
+   }
 }
 
 test {
@@ -65,7 +80,7 @@ spotless {
         trimTrailingWhitespace()
         endWithNewline()
 
-        importOrder('org.qefrc.qelib', 'org.qefrc', 'edu.wpi')
+        importOrder('frc.qefrc.qelib', 'frc.qefrc', 'edu.wpi')
         removeUnusedImports()
     }
 }
@@ -75,10 +90,21 @@ javadoc {
     destinationDir = file('docs/')
 }
 
+java {
+    // Make the java task build a javadoc and source jar
+    withJavadocJar()
+    withSourcesJar()
+
+    // Force the project to compile for Java 11
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 build {
     dependsOn javadoc
 }
 
-jar {
-    from sourceSets.main.allSource
+wrapper {
+    gradleVersion = "7.4"
+    distributionType = Wrapper.DistributionType.ALL
 }
