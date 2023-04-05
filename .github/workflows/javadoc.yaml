@@ -44,10 +44,11 @@ jobs:
         run: chmod +x ./gradlew
       - name: Run build with Gradle Wrapper
         run: ./gradlew javadoc
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Deploy Docs
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
-          path: './docs'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+          folder: docs
+          repository-name: FRC9015/FRC9015.github.io
+          branch: main
+          clean: true
+          target-folder: docs/qelib/dev
