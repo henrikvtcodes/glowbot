@@ -47,5 +47,5 @@ jobs:
           repository-name: FRC9015/FRC9015.github.io
           branch: main
           clean: true
-          target-folder: docs/qelib/${{ github.event. }}
+          target-folder: docs/qelib/release/${{ github.event.release.tag_name }}
           token: ${{ secrets.PAGES_DEPLOY_KEY }}
