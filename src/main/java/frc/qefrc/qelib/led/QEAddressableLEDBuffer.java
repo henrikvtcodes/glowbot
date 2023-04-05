@@ -19,6 +19,12 @@ import edu.wpi.first.wpilibj.util.Color8Bit;
  * </ul>
  */
 public class QEAddressableLEDBuffer extends AddressableLEDBuffer implements Iterable<QELED> {
+    /**
+     * Create a new {@link QEAddressableLEDBuffer}. This simply runs the {@link
+     * AddressableLEDBuffer} constructor.
+     *
+     * @param length
+     */
     public QEAddressableLEDBuffer(int length) {
         super(length);
     }
