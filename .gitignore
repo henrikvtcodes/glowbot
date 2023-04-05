@@ -1,5 +1,6 @@
 .gradle
 build/
+docs/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
@@ -37,7 +38,10 @@ bin/
 /.nb-gradle/
 
 ### VS Code ###
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/extensions.json
 
 ### Mac OS ###
 .DS_Store

@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+		"eamodio.gitlens",
+		"bierner.github-markdown-preview",
+		"mhutchie.git-graph",
+        "naco-siren.gradle-language",
+        "vscjava.vscode-gradle",
+        "vscjava.vscode-java-pack",
+        "richardwillis.vscode-spotless-gradle",
+	],
+    
+}
