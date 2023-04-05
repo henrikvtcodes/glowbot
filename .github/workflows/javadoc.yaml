@@ -49,3 +49,4 @@ jobs:
           branch: main
           clean: true
           target-folder: docs/qelib/dev
+          token: ${{ secrets.PAGES_DEPLOY_KEY }}
