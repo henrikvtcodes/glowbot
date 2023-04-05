@@ -1,5 +1,5 @@
 # Simple workflow for deploying javadocs to GitHub Pages
-name: Deploy JavaDocs to Github Pages
+name: Deploy Dev JavaDocs to Github Pages
 
 on:
   # Runs on pushes targeting the default branch
