@@ -7,12 +7,12 @@ package frc.qefrc.qelib.led;
  * Represents a subsection of an LED Strip <br>
  * </br>
  */
-final class LEDSection {
+public final class LEDSection {
     public final int startIdx;
     public final int endIdx;
     public final int length;
-
-    public LEDSection(int start, int end) {
+    // No docs because this isn't public
+    LEDSection(int start, int end) {
         startIdx = start;
         endIdx = end;
         length = Math.abs(end - start);
