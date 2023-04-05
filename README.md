@@ -1,8 +1,12 @@
 # QELib
 [![](https://jitpack.io/v/FRC9015/QELib.svg)](https://jitpack.io/#FRC9015/QELib)
 
-QE Lib (short for Questionable Engineering Library) is a Java library for FRC Robotics that expands on the functionality of WPILib. 
+QE Lib (short for Questionable Engineering Library) is a Java library for FRC Robotics that expands on the functionality of WPILib.  
+### Docs
+**Development**: [Javadoc](https://frc9015.github.io/docs/qelib/dev/) 
+> *Note: Development Javadocs are updated on every push!*  
 
+**Release**: This does not exist yet.
 ### How to Use
 Our code is delivered via JitPack, so first you have to add the JitPack repository (if you don't already have it) in your `build.gradle`:  
 ```gradle
@@ -21,7 +25,7 @@ dependecies {
         implementation 'com.github.FRC9015:QELib:TAG'
 }
 ```
-> ℹ️ Note: We are looking to add support for downloading sub-packages in the future.
+> ℹ️ Note: We are considering adding support for downloading sub-packages in the future.
 
 ## In this package...
 So far, here are the main sections of our package: 
