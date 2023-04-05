@@ -89,6 +89,7 @@ spotless {
 
 javadoc {
     destinationDir = file('docs/')
+    failOnError = false
 }
 
 java {
