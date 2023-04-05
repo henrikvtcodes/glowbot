@@ -5,7 +5,7 @@
 			"type": "gradle",
 			"id": "c:\\Users\\htech\\Desktop\\code\\FRC9015\\QELibbuildqelib",
 			"script": "build",
-			"description": "Assembles and tests this project.",
+			"description": "Build this project",
 			"group": "build",
 			"project": "qelib",
 			"buildFile": "C:\\Users\\htech\\Desktop\\code\\FRC9015\\QELib\\build.gradle",
@@ -18,6 +18,25 @@
 				"$gradle"
 			],
 			"label": "gradle: build",
+		},
+
+		{
+			"type": "gradle",
+			"id": "c:\\Users\\htech\\Desktop\\code\\FRC9015\\QELibjavadocqelib",
+			"script": "javadoc",
+			"description": "Build Javadoc for this project",
+			"group": "",
+			"project": "qelib",
+			"buildFile": "C:\\Users\\htech\\Desktop\\code\\FRC9015\\QELib\\build.gradle",
+			"rootProject": "qelib",
+			"projectFolder": "c:\\Users\\htech\\Desktop\\code\\FRC9015\\QELib",
+			"workspaceFolder": "c:\\Users\\htech\\Desktop\\code\\FRC9015\\QELib",
+			"args": "-Pskip-inspector-wrapper",
+			"javaDebug": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"label": "gradle: javadoc",
 		}
 	]
 }
