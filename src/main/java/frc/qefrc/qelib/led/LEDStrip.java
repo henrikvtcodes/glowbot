@@ -12,7 +12,11 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
-/** LEDStrip Docs TODO */
+/**
+ * LEDStrip is an abstraction over {@link AddressableLED} and {@link
+ * edu.wpi.first.wpilibj.AddressableLEDBuffer}. It provide enhanced functionality for static colors
+ * and patterns
+ */
 public class LEDStrip {
     @Getter private final int pwmPort, length;
     private final AddressableLED leds;
