@@ -3,6 +3,8 @@
 /* found in the root directory of this project. */
 package frc.qefrc.qelib.led;
 
+import edu.wpi.first.math.MathUtil;
+
 /**
  * Represents a subsection of an LED Strip <br>
  * </br>
@@ -16,5 +18,25 @@ public final class LEDSection {
         startIdx = start;
         endIdx = end;
         length = Math.abs(end - start);
+    }
+
+    /**
+     * Check if a given index is within the section
+     *
+     * @param index index to check
+     * @return whether the index is within the section
+     */
+    public boolean isWithinSection(int index) {
+        return (index >= startIdx && index <= endIdx);
+    }
+
+    /**
+     * Clamp a value within the section
+     *
+     * @param index value to clamp
+     * @return value clamped to [start, end]
+     */
+    public int clampWithinSection(int index) {
+        return MathUtil.clamp(index, startIdx, endIdx);
     }
 }
