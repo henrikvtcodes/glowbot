@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 
 /**
- * This is a custom extension of the {@link AdressableLEDBuffer} from WPILib. <br>
+ * This is a custom extension of the {@link AddressableLEDBuffer} from WPILib. <br>
  * </br> <b>Useful Features</b>
  *
  * <ul>
@@ -96,7 +96,7 @@ public class QEAddressableLEDBuffer extends AddressableLEDBuffer implements Iter
 
             @Override
             public void remove() {
-                throw new UnsupportedOperationException();
+                throw new UnsupportedOperationException("LEDs cannot be removed!");
             }
         };
     }
