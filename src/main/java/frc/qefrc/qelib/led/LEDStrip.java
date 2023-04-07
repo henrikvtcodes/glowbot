@@ -55,7 +55,7 @@ public class LEDStrip {
      *     Strip
      */
     public LEDSection getSection(int start, int end) {
-        return new LEDSection(clampWithinStrip(start), clampWithinStrip(end));
+        return new LEDSection(clampWithinStrip(start), clampWithinStrip(start, end));
     }
 
     /** Start LED Output */
@@ -123,8 +123,24 @@ public class LEDStrip {
 
     /* -------- PRIVATE HELPERS -------- */
 
-    // This helper makes sure that we don't try to address nonexistant LEDs
+    /**
+     * Clamp number within [0, length)
+     *
+     * @param val index value to clamp
+     * @return Clamped value
+     */
     private int clampWithinStrip(int val) {
         return MathUtil.clamp(val, 0, length - 1);
+    }
+
+    /**
+     * Clamp number within [start, length)
+     *
+     * @param start starting index
+     * @param end ending index
+     * @return end parameter clamped to [start, length)
+     */
+    private int clampWithinStrip(int start, int end) {
+        return MathUtil.clamp(end, start, length - 1);
     }
 }
