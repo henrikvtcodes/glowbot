@@ -20,7 +20,9 @@ public interface LEDPattern {
     public LEDSection getSection();
 
     /**
-     * If this is false, the pattern is run once and removed from the runningPatterns {@link
+     * Indicate if this pattern changes over time. This is also useful if you would like to
+     * continuously posess it's section of LEDs. <br>
+     * </br> If this is false, the pattern is run once and removed from the runningPatterns {@link
      * java.util.Map}.
      *
      * @return whether this pattern is animated; as in, it changes over time
