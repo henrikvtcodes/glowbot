@@ -6,11 +6,11 @@ package frc.qefrc.qelib.led;
 /** Interface for implementing an LED Pattern */
 public interface LEDPattern {
     /**
-     * Use the provided {@link QEAddressableLEDBuffer} to control LEDs
+     * Use the provided {@link LEDSectionController} to control LEDs
      *
-     * @param buffer
+     * @param control
      */
-    public void setPattern(QEAddressableLEDBuffer buffer);
+    public void setPattern(LEDSectionController control);
 
     /**
      * Get the section of LEDs that this pattern controls
