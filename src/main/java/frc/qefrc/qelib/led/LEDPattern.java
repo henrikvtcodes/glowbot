@@ -4,7 +4,7 @@
 package frc.qefrc.qelib.led;
 
 /** Interface for implementing an LED Pattern */
-public interface QELEDPattern {
+public interface LEDPattern {
     /**
      * Use the provided {@link QEAddressableLEDBuffer} to control LEDs
      *
