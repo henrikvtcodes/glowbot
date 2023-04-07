@@ -39,4 +39,19 @@ public final class LEDSection {
     public int clampWithinSection(int index) {
         return MathUtil.clamp(index, startIdx, endIdx);
     }
+
+    /**
+     * Check if two {@link LEDSection}'s overlap
+     *
+     * @param checkSection other section to check
+     * @return true if the sections overlap, false if they're separated
+     */
+    public boolean testOverlap(LEDSection checkSection) {
+        // check if the given start or end points are within this section
+        if (isWithinSection(checkSection.startIdx) || isWithinSection(checkSection.endIdx)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

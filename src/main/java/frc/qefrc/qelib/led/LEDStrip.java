@@ -3,7 +3,10 @@
 /* found in the root directory of this project. */
 package frc.qefrc.qelib.led;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import lombok.Getter;
+import lombok.NonNull;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.AddressableLED;
@@ -22,6 +25,7 @@ public class LEDStrip {
     private final AddressableLED leds;
     private QEAddressableLEDBuffer ledBuf;
     private LEDSection defaultSection;
+    private Map<LEDSection, LEDPattern> runningPatterns;
 
     /**
      * Creates a new LEDStrip object.
@@ -40,6 +44,9 @@ public class LEDStrip {
 
         // When an LED section isnt specified, this is used
         defaultSection = new LEDSection(0, length - 1);
+
+        // Create a hashmap for holding patterns
+        runningPatterns = new ConcurrentHashMap<LEDSection, LEDPattern>();
 
         start();
     }
@@ -79,7 +86,7 @@ public class LEDStrip {
         leds.setData(ledBuf);
     }
 
-    /* -------- Color & Effect Setters -------- */
+    /* -------- Color Setters -------- */
 
     /**
      * Set a static color on a section of LEDs
@@ -119,6 +126,52 @@ public class LEDStrip {
      */
     public void setColor(Color8Bit color) {
         setColorRange(color, defaultSection);
+    }
+
+    /** Set all LEDs to Black, aka Off. */
+    public void off() {
+        setColor(Color.kBlack);
+    }
+
+    /* --------- EFFECT SETTER --------- */
+
+    /**
+     * Set a pattern on the LED strip
+     *
+     * @param pattern the pattern to set
+     * @param shouldInterrupt whether this pattern should interrupt another pattern if it overlaps
+     * @return whether the pattern was successfully set
+     */
+    public boolean setPattern(@NonNull LEDPattern pattern, boolean shouldInterrupt) {
+        if (!shouldInterrupt) {
+            /* If the pattern should not interrupt any running patterns, test for overlap and return false if overlap is found */
+            for (LEDSection key : runningPatterns.keySet()) {
+                if (key.testOverlap(pattern.getSection())) {
+                    return false;
+                }
+            }
+
+            runningPatterns.put(pattern.getSection(), pattern);
+            return true;
+        } else {
+            /* Loop through all running patterns and remove overlapping ones
+             */
+            for (Map.Entry<LEDSection, LEDPattern> entry : runningPatterns.entrySet()) {
+                LEDSection key = entry.getKey();
+                LEDPattern value = entry.getValue();
+                if (key.testOverlap(pattern.getSection())) {
+                    runningPatterns.remove(key, value);
+                }
+            }
+
+            runningPatterns.put(pattern.getSection(), pattern);
+            return true;
+        }
+    }
+
+    /** Removes all running patterns and sets the LED strip to black. */
+    public void wipe() {
+        runningPatterns.clear();
     }
 
     /* -------- PRIVATE HELPERS -------- */
