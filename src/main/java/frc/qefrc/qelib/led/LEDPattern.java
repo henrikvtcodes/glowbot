@@ -19,6 +19,12 @@ public interface LEDPattern {
      */
     public LEDSection getSection();
 
+    /**
+     * If this is false, the pattern is run once and removed from the runningPatterns {@link
+     * java.util.Map}.
+     *
+     * @return whether this pattern is animated; as in, it changes over time
+     */
     default boolean isAnimated() {
         return false;
     }
