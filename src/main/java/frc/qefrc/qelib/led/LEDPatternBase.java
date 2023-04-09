@@ -3,6 +3,7 @@
 /* found in the root directory of this project. */
 package frc.qefrc.qelib.led;
 
+/** {@inheritDoc LEDPattern} */
 public abstract class LEDPatternBase implements LEDPattern {
     protected final LEDSection section;
 
