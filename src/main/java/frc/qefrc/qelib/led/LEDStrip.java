@@ -65,10 +65,20 @@ public class LEDStrip {
         return new LEDSection(clampWithinStrip(start), clampWithinStrip(start, end));
     }
 
+    /**
+     * Get a new {@link LEDSectionController} from an {@link LEDSection}
+     *
+     * @param section the section to create the controller with
+     * @return
+     */
+    public LEDSectionController getSectionController(LEDSection section) {
+        return new LEDSectionController(ledBuf, section);
+    }
+
     /** Start LED Output */
     public void start() {
-        leds.start();
         leds.setData(ledBuf);
+        leds.start();
     }
 
     /** Stop LED Output */
@@ -83,6 +93,12 @@ public class LEDStrip {
      * Subsystem#periodic() periodic()} method or the {@link TimedRobot#robotPeriodic()} method.
      */
     public void update() {
+        LEDSectionController controller;
+        // Update buffer by running all patterns
+        for (LEDPattern pattern : runningPatterns.values()) {
+            controller = getSectionController(pattern.getSection());
+            pattern.setPattern(controller);
+        }
         leds.setData(ledBuf);
     }
 
