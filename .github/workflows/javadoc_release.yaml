@@ -3,13 +3,7 @@ name: Deploy Release JavaDocs to Github Pages
 
 on:
   release:
-    types: [published, unpublished, created, edited]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions: write-all
+    types: [published, created, edited]
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -40,12 +34,23 @@ jobs:
         run: chmod +x ./gradlew
       - name: Run build with Gradle Wrapper
         run: ./gradlew javadoc
+ 
       - name: Deploy Docs
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           folder: docs
           repository-name: FRC9015/FRC9015.github.io
           branch: main
           clean: true
-          target-folder: docs/qelib/release/${{ github.event.release.tag_name }}
+          target-folder: docs/qelib/${{ github.event.release.tag_name }}
           token: ${{ secrets.PAGES_DEPLOY_KEY }}
+
+      - name: Update release description
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const releaseId = context.payload.release.id;
+            const currentBody = context.payload.release.body;
+            const newBody = `${currentBody}\n\nDocumentation: https://github.com/${owner}/${repo}/tree/gh-pages/docs/qelib/${{ github.event.release.tag_name }}`;
+            await github.rest.repos.updateRelease({ owner, repo, release_id: releaseId, body: newBody });
