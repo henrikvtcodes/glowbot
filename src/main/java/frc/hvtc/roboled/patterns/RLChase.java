@@ -1,21 +1,20 @@
 /* Copyright (c) 2023 Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
 /* This work is licensed under the terms of the MPL 2.0 license */
 /* found in the root directory of this project. */
-package frc.qefrc.qelib.led.patterns;
-
-import frc.qefrc.qelib.led.LEDPatternBase;
-import frc.qefrc.qelib.led.LEDSection;
-import frc.qefrc.qelib.led.LEDSectionController;
+package frc.hvtc.roboled.patterns;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import edu.wpi.first.wpilibj.util.Color;
+import frc.hvtc.roboled.LEDPatternBase;
+import frc.hvtc.roboled.LEDSection;
+import frc.hvtc.roboled.LEDSectionController;
 
 /**
  * Color Chasing Pattern; segments of each color "chase" down the led strip {@category LEDPattern}
  */
-public class QEChase extends LEDPatternBase {
+public class RLChase extends LEDPatternBase {
     private int chaseOffset;
     @Getter @Setter private int segWidth;
     private Color[] colors;
@@ -24,7 +23,7 @@ public class QEChase extends LEDPatternBase {
      * @param segmentWidth how wide each color segment should be
      * @param myColors colors to chase with
      */
-    public QEChase(LEDSection mySection, int segmentWidth, Color[] myColors) {
+    public RLChase(LEDSection mySection, int segmentWidth, Color[] myColors) {
         super(mySection);
         segWidth = segmentWidth;
         colors = myColors;

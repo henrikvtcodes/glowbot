@@ -1,24 +1,24 @@
 {
-    "java.format.enabled": false,
+  "java.format.enabled": false,
+  "files.trimTrailingWhitespace": false,
+  "[java]": {
+    "spotlessGradle.diagnostics.enable": true,
+    "spotlessGradle.format.enable": true,
+    "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.spotlessGradle": false
+    },
+    "editor.suggest.snippetsPreventQuickSuggestions": true,
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "off"
+    }
+  },
+  "[gradle]": {
     "files.trimTrailingWhitespace": false,
-    "[java]": {
-        "spotlessGradle.diagnostics.enable": true,
-        "spotlessGradle.format.enable": true,
-        "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
-        "editor.codeActionsOnSave": {
-            "source.fixAll.spotlessGradle": true
-        },
-        "editor.suggest.snippetsPreventQuickSuggestions": true,
-        "editor.quickSuggestions": {
-            "comments": "on",
-            "strings": "off"
-        }
-    },
-    "[gradle]": {
-        "files.trimTrailingWhitespace": false,
-        "spotlessGradle.diagnostics.enable": true,
-        "spotlessGradle.format.enable": true,
-        "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
-    },
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "spotlessGradle.diagnostics.enable": true,
+    "spotlessGradle.format.enable": true,
+    "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle"
+  },
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

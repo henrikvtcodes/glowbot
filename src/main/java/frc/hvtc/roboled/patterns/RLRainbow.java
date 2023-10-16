@@ -1,17 +1,17 @@
 /* Copyright (c) 2023 Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
 /* This work is licensed under the terms of the MPL 2.0 license */
 /* found in the root directory of this project. */
-package frc.qefrc.qelib.led.patterns;
+package frc.hvtc.roboled.patterns;
 
-import frc.qefrc.qelib.led.LEDPatternBase;
-import frc.qefrc.qelib.led.LEDSection;
-import frc.qefrc.qelib.led.LEDSectionController;
+import frc.hvtc.roboled.LEDPatternBase;
+import frc.hvtc.roboled.LEDSection;
+import frc.hvtc.roboled.LEDSectionController;
 
 /** A lovely rainbow effect {@category LEDPattern} */
-public class QERainbow extends LEDPatternBase {
+public class RLRainbow extends LEDPatternBase {
     private int rainbowFirstPixelHue;
 
-    public QERainbow(LEDSection mySection) {
+    public RLRainbow(LEDSection mySection) {
         super(mySection);
     }
 

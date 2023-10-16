@@ -1,20 +1,19 @@
 /* Copyright (c) 2023 Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
 /* This work is licensed under the terms of the MPL 2.0 license */
 /* found in the root directory of this project. */
-package frc.qefrc.qelib.led.patterns;
-
-import frc.qefrc.qelib.led.LEDPatternBase;
-import frc.qefrc.qelib.led.LEDSection;
-import frc.qefrc.qelib.led.LEDSectionController;
+package frc.hvtc.roboled.patterns;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.util.Color;
+import frc.hvtc.roboled.LEDPatternBase;
+import frc.hvtc.roboled.LEDSection;
+import frc.hvtc.roboled.LEDSectionController;
 
 /** Pure color chaos. Random colors on each pixel. */
-public class QEChaos extends LEDPatternBase {
+public class RLChaos extends LEDPatternBase {
     private boolean firstRun = true;
 
-    public QEChaos(LEDSection mySection) {
+    public RLChaos(LEDSection mySection) {
         super(mySection);
     }
 

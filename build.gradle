@@ -10,8 +10,8 @@ plugins {
 
 }
 
-project.group = 'com.github.FRC9015'
-group = 'com.github.FRC9015'
+project.group = 'com.github.henrikvtcodes'
+group = 'com.github.henrikvtcodes'
 
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -53,8 +53,8 @@ dependencies {
 publishing {
    publications {
        mavenJava(MavenPublication) {
-        groupId = 'frc.qefrc'
-        artifactId = 'qelib'
+        groupId = 'frc.hvtc'
+        artifactId = 'roboled'
         //    version = "${version}"
 
            from components.java
@@ -70,18 +70,13 @@ final YEAR = new Date().format('yyyy')
 
 spotless {
     java {
-        licenseHeader """
-/* Copyright (c) ${YEAR} Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
-/* This work is licensed under the terms of the MPL 2.0 license */
-/* found in the root directory of this project. */
-"""
 
         googleJavaFormat('1.13.0').aosp()
 
         trimTrailingWhitespace()
         endWithNewline()
 
-        importOrder('frc.qefrc.qelib', 'frc.qefrc', 'edu.wpi')
+        importOrder('frc.hvtc.roboled', 'frc.hvtc', 'edu.wpi')
         removeUnusedImports()
     }
 }

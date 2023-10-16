@@ -1,7 +1,7 @@
 /* Copyright (c) 2023 Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
 /* This work is licensed under the terms of the MPL 2.0 license */
 /* found in the root directory of this project. */
-package frc.qefrc.qelib.led;
+package frc.hvtc.roboled;
 
 import java.util.Iterator;
 
@@ -18,14 +18,14 @@ import edu.wpi.first.wpilibj.util.Color8Bit;
  *   <li>Controlling the entire LED strip or sections of it with a single method call
  * </ul>
  */
-public class QEAddressableLEDBuffer extends AddressableLEDBuffer implements Iterable<QELED> {
+public class RLAddressableLEDBuffer extends AddressableLEDBuffer implements Iterable<RLED> {
     /**
-     * Create a new {@link QEAddressableLEDBuffer}. This simply runs the {@link
+     * Create a new {@link RLAddressableLEDBuffer}. This simply runs the {@link
      * AddressableLEDBuffer} constructor.
      *
      * @param length
      */
-    public QEAddressableLEDBuffer(int length) {
+    public RLAddressableLEDBuffer(int length) {
         super(length);
     }
 
@@ -35,7 +35,7 @@ public class QEAddressableLEDBuffer extends AddressableLEDBuffer implements Iter
      * @param color {@link Color}
      */
     public void set(Color color) {
-        for (QELED led : this) {
+        for (RLED led : this) {
             led.set(color);
         }
     }
@@ -46,7 +46,7 @@ public class QEAddressableLEDBuffer extends AddressableLEDBuffer implements Iter
      * @param color {@link Color8Bit}
      */
     public void set(Color8Bit color) {
-        for (QELED led : this) {
+        for (RLED led : this) {
             led.set(color);
         }
     }
@@ -79,8 +79,8 @@ public class QEAddressableLEDBuffer extends AddressableLEDBuffer implements Iter
 
     /** Iterate over LEDs using cool for-each syntax */
     @Override
-    public Iterator<QELED> iterator() {
-        return new Iterator<QELED>() {
+    public Iterator<RLED> iterator() {
+        return new Iterator<RLED>() {
             private int currentIndex = 0;
             private int endIndex = getLength();
 
@@ -90,8 +90,8 @@ public class QEAddressableLEDBuffer extends AddressableLEDBuffer implements Iter
             }
 
             @Override
-            public QELED next() {
-                return new QELED(getBuffer(), currentIndex++);
+            public RLED next() {
+                return new RLED(getBuffer(), currentIndex++);
             }
 
             @Override

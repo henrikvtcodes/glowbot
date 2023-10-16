@@ -1,7 +1,7 @@
 /* Copyright (c) 2023 Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
 /* This work is licensed under the terms of the MPL 2.0 license */
 /* found in the root directory of this project. */
-package frc.qefrc.qelib.led;
+package frc.hvtc.roboled;
 
 import java.util.Iterator;
 
@@ -13,20 +13,20 @@ import edu.wpi.first.wpilibj.util.Color8Bit;
  * subset of LEDs. With this, we can allow multiple patterns to run at once. <br>
  * </br> By default, LED indexes are clamped so that LEDs outside this section cannot be controlled.
  */
-public final class LEDSectionController implements Iterable<QELED> {
+public final class LEDSectionController implements Iterable<RLED> {
     public final LEDSection section;
-    private final QEAddressableLEDBuffer buffer;
+    private final RLAddressableLEDBuffer buffer;
 
     // Package-private constructor, so no JavaDocs
-    LEDSectionController(QEAddressableLEDBuffer myBuffer, LEDSection mySection) {
+    LEDSectionController(RLAddressableLEDBuffer myBuffer, LEDSection mySection) {
         section = mySection;
         buffer = myBuffer;
     }
 
     /** Iterate over LEDs using cool for-each syntax */
     @Override
-    public Iterator<QELED> iterator() {
-        return new Iterator<QELED>() {
+    public Iterator<RLED> iterator() {
+        return new Iterator<RLED>() {
             private int currentIndex = section.startIdx;
             private int endIndex = section.endIdx;
 
@@ -36,8 +36,8 @@ public final class LEDSectionController implements Iterable<QELED> {
             }
 
             @Override
-            public QELED next() {
-                return new QELED(buffer, currentIndex++);
+            public RLED next() {
+                return new RLED(buffer, currentIndex++);
             }
 
             @Override

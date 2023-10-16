@@ -1,7 +1,7 @@
 /* Copyright (c) 2023 Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
 /* This work is licensed under the terms of the MPL 2.0 license */
 /* found in the root directory of this project. */
-package frc.qefrc.qelib.led;
+package frc.hvtc.roboled;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 
 /** Custom Representation of a single LED */
-public final class QELED {
+public final class RLED {
     private AddressableLEDBuffer buffer;
     int idx;
 
     // Lack of `public` modifer prevents end users from instantiating
-    QELED(AddressableLEDBuffer ledBuffer, int index) {
+    RLED(AddressableLEDBuffer ledBuffer, int index) {
         buffer = ledBuffer;
         idx = index;
     }

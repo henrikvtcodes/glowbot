@@ -1,20 +1,19 @@
 /* Copyright (c) 2023 Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
 /* This work is licensed under the terms of the MPL 2.0 license */
 /* found in the root directory of this project. */
-package frc.qefrc.qelib.led.patterns;
-
-import frc.qefrc.qelib.led.LEDPatternBase;
-import frc.qefrc.qelib.led.LEDSection;
-import frc.qefrc.qelib.led.LEDSectionController;
+package frc.hvtc.roboled.patterns;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.util.Color;
+import frc.hvtc.roboled.LEDPatternBase;
+import frc.hvtc.roboled.LEDSection;
+import frc.hvtc.roboled.LEDSectionController;
 
 /**
  * Color Scanning effect; the "eye" color scans back and forth. This is different than "chase"
  * because the eye fades in and out over it's length {@category LEDPattern}
  */
-public class QEScanner extends LEDPatternBase {
+public class RLScanner extends LEDPatternBase {
     private int eyePosition = 0, scanDirection = 1, length;
     private Color background, eye;
 
@@ -24,7 +23,7 @@ public class QEScanner extends LEDPatternBase {
      * @param eyeColor Eye (Center) color
      * @param eyeLength Length of Eye
      */
-    public QEScanner(LEDSection mySection, Color bg, Color eyeColor, int eyeLength) {
+    public RLScanner(LEDSection mySection, Color bg, Color eyeColor, int eyeLength) {
         super(mySection);
         eyeLength = length;
         background = bg;

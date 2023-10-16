@@ -1,7 +1,7 @@
 /* Copyright (c) 2023 Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
 /* This work is licensed under the terms of the MPL 2.0 license */
 /* found in the root directory of this project. */
-package frc.qefrc.qelib.led;
+package frc.hvtc.roboled;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 public class LEDStrip {
     @Getter private final int pwmPort, length;
     private final AddressableLED leds;
-    private QEAddressableLEDBuffer ledBuf;
+    private RLAddressableLEDBuffer ledBuf;
     private LEDSection defaultSection;
     private Map<LEDSection, LEDPattern> runningPatterns;
 
@@ -40,7 +40,7 @@ public class LEDStrip {
         leds = new AddressableLED(port);
         leds.setLength(length);
 
-        ledBuf = new QEAddressableLEDBuffer(stripLength);
+        ledBuf = new RLAddressableLEDBuffer(stripLength);
 
         // When an LED section isnt specified, this is used
         defaultSection = new LEDSection(0, length - 1);
