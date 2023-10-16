@@ -1,14 +1,17 @@
-# QELib
-[![](https://jitpack.io/v/FRC9015/QELib.svg)](https://jitpack.io/#FRC9015/QELib)
+# RoboLED
 
-QE Lib (short for Questionable Engineering Library) is a Java library for FRC Robotics that expands on the functionality of WPILib.  
+[![](https://jitpack.io/v/henrikvtcodes/roboled.svg)](https://jitpack.io/#henrikvtcodes/roboled)
+
+RoboLED is an LED control library for WPILib. It is based on the AddressableLED primitives in WPILib and aims to simplify the use of directly-connected addressable LEDs as well as provide a more complete foundation to build effects on. RoboLED also includes premade patterns to start from.
+
 ### Docs
-**Development**: [Javadoc](https://frc9015.github.io/docs/qelib/dev/) 
-> *Note: Development Javadocs are updated on every push!*  
 
-**Release**: This does not exist yet.
+Not yet published.
+
 ### How to Use
-Our code is delivered via JitPack, so first you have to add the JitPack repository (if you don't already have it) in your `build.gradle`:  
+
+First you have to add the JitPack repository (if you don't already have it) in your `build.gradle`:
+
 ```gradle
 repositories {
     maven {
@@ -16,26 +19,21 @@ repositories {
     }
     ... // Other repositories
 }
-``` 
-Next, just add our dependency!  
-[![](https://jitpack.io/v/FRC9015/QELib.svg)](https://jitpack.io/#FRC9015/QELib)
-```gradle
+```
+
+Next, just add the dependency!  
+[![](https://jitpack.io/v/henrikvtcodes/roboled.svg)](https://jitpack.io/#henrikvtcodes/roboled)```gradle
 dependecies {
-    // Make sure to replace "TAG" with the most recent tag, seen above in the JitPack Icon
-        implementation 'com.github.FRC9015:QELib:TAG'
+// Make sure to replace "TAG" with the most recent tag, seen above in the JitPack Icon
+implementation 'com.github.henrikvtcodes:RoboLED:TAG'
 }
+
 ```
 > ℹ️ Note: We are considering adding support for downloading sub-packages in the future.
 
 ## In this package...
-So far, here are the main sections of our package: 
-- **Drive**
-    - `QEDiffDrive`: This is an enhanced differential drive class for more accurate driving; i.e. driving using units like meters/second and radians/second.
-- **LED Control**
+- **Addressable LEDs**
     - `LEDStrip`: WPILib's `AdressableLED` but with built in patterns and more!
-    - `BlinkinModule`: A Declarative API for the REV Robotics Blinkin
-
-*See the README in each sub-package for more information.*
-
-## Justification
-This was created to package up some pretty useful code so that it can be used across seasons. The classes and utilites in this library are here for one of two reasons: 1) it's a neat-and-tidy version of solutions to problems we had while developing robots, or 2) It simplifies repetetive tasks.
+- **Blinkin**
+    - A declarative API for the REV Robotics Blinkin Module
+```
