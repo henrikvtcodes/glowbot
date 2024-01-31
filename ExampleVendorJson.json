@@ -1,0 +1,18 @@
+{
+    "fileName": "ExampleVendorJson.json",
+    "name": "ExampleVendorDep",
+    "version": "2024.0.1",
+    "frcYear": "2024",
+    "uuid": "a6f47264-c699-4761-ae19-7501fd7f5cca",
+    "mavenUrls": [
+        "ThisNeedsToBeTheRootMavenUrl"
+    ],
+    "jsonUrl": "InsertSomeUrlHere",
+    "javaDependencies": [
+        {
+            "groupId": "com.orangeunilabs.roboled",
+            "artifactId": "Roboled-java",
+            "version": "0.0.1"
+        }
+    ]
+}

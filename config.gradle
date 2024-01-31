@@ -1,0 +1,63 @@
+import org.gradle.internal.os.OperatingSystem
+
+nativeUtils.addWpiNativeUtils()
+nativeUtils.withCrossRoboRIO()
+
+nativeUtils {
+    wpi {
+        configureDependencies {
+            wpiVersion = "2024.+"
+            opencvYear = "frc2024"
+            googleTestYear = "frc2024"
+            niLibVersion = "2024.2.1"
+            opencvVersion = "4.8.0-2"
+            googleTestVersion = "1.14.0-1"
+        }
+    }
+}
+
+nativeUtils.wpi.addWarnings()
+nativeUtils.wpi.addWarningsAsErrors()
+
+nativeUtils.setSinglePrintPerPlatform()
+
+model {
+    // Uncomment this, and remove lines below it to enable builds for just roborio
+    // components {
+    //     all {
+    //         targetPlatform nativeUtils.wpi.platforms.roborio
+    //     }
+    // }
+}
+
+ext.createAllCombined = { list, name, base, type, project ->
+    def outputsFolder = file("$project.buildDir/outputs")
+
+    def task = project.tasks.create(base + "-all", type) {
+        description = "Creates component archive for all classifiers"
+        destinationDirectory = outputsFolder
+        classifier = "all"
+        archiveBaseName = base
+        duplicatesStrategy = 'exclude'
+
+        list.each {
+            if (it.name.endsWith('debug')) return
+            from project.zipTree(it.archiveFile)
+            dependsOn it
+        }
+    }
+
+    project.build.dependsOn task
+
+    project.artifacts {
+        task
+    }
+
+    return task
+
+}
+
+javadoc {
+    options.links("https://docs.oracle.com/en/java/javase/11/docs/api/")
+    options.links("https://github.wpilib.org/allwpilib/docs/release/java/")
+}
