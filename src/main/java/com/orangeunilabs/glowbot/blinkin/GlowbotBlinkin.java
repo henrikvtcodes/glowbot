@@ -1,5 +1,4 @@
-package com.orangeunilabs.roboled.blinkin;
-
+package com.orangeunilabs.glowbot.blinkin;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -8,13 +7,14 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 
 /** This class represents a REV Robotics Blinkin LED Controller */
-public class Blinkin extends BlinkinConstants {
+public class GlowbotBlinkin extends GlowbotBlinkinConstants {
 
     private final Spark blinkin;
     private final int pwmPort;
     private double currentValue = SolidColor.Off.val;
 
-    public Blinkin(int port) {
+    public GlowbotBlinkin(int port) {
+        super();
         pwmPort = port;
         blinkin = new Spark(pwmPort);
     }

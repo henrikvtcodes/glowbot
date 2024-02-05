@@ -45,9 +45,9 @@ ext.addTaskToCopyAllOutputs = { task ->
     copyAllOutputs.from task.archiveFile
 }
 
-def artifactGroupId = 'com.orangeunilabs.roboled'
+def artifactGroupId = 'com.orangeunilabs.glowbot'
 def baseArtifactId = 'RoboLED'
-def javaBaseName = "_GROUP_com_orangeunilabs_roboled_ID_${baseArtifactId}-java_CLS"
+def javaBaseName = "_GROUP_com_orangeunilabs_glowbot_ID_${baseArtifactId}-java_CLS"
 
 tasks.register('sourcesJar', Jar) {
     dependsOn classes
