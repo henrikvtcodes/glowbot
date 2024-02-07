@@ -1,22 +1,26 @@
-package com.orangeunilabs.glowbot.rio;
+package com.orangeunilabs.glowbot;
 
-import com.orangeunilabs.glowbot.GlowbotException;
 import edu.wpi.first.wpilibj.*;
+
+import java.util.Iterator;
 
 /** The GlowbotRio class is the core abstraction for using the Rio to drive LEDs directly.
  *
  */
-public class GlowbotRio implements AutoCloseable {
+public class GlowbotRio implements AutoCloseable, Iterable<Pixel> {
     private static int instanceCount = 0;
     public static final int PERIODIC_UPDATE_FREQUENCY_HERTZ = 50;
     public final int length, port;
     private final String name;
 
     private final AddressableLED ledStrip;
-    private final AddressableLEDBuffer buffer;
+    private final GlowbotLEDBuffer buffer;
     private final Notifier notifier;
     private boolean notifierIsRunning = false;
     private int currentNotifierFrequency = PERIODIC_UPDATE_FREQUENCY_HERTZ;
+
+    private final LEDSection defaultSection;
+    private final LEDSectionController defaultSectionController;
 
     /**
      *
@@ -41,9 +45,12 @@ public class GlowbotRio implements AutoCloseable {
             DriverStation.reportWarning("RoboLED Warning: More than 1 instance created! This is not supported by the roboRio!", true);
         }
 
+        // Create low level resources
         ledStrip = new AddressableLED(port);
         ledStrip.setLength(length);
-        buffer = new AddressableLEDBuffer(length);
+        buffer = new GlowbotLEDBuffer(length);
+        defaultSection = new LEDSection(0, length - 1);
+        defaultSectionController = new LEDSectionController(buffer, defaultSection);
 
         if (config.hasAlternateBitTiming) {
             config.configureBitTiming(ledStrip);
@@ -109,6 +116,13 @@ public class GlowbotRio implements AutoCloseable {
      */
     public int getNotifierFrequency() {
         return notifierIsRunning ? currentNotifierFrequency : -1;
+    }
+
+    /* --------- Implemented Methods --------- */
+
+    @Override
+    public Iterator<Pixel> iterator() {
+        return defaultSectionController.iterator();
     }
 
     @Override

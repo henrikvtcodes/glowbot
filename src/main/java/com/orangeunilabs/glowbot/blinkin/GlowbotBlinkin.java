@@ -10,19 +10,20 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 public class GlowbotBlinkin extends GlowbotBlinkinConstants {
 
     private final Spark blinkin;
-    private final int pwmPort;
     private double currentValue = SolidColor.Off.val;
 
+    /**
+     * Create a new Glowbot Blinkin instance.
+     * @param port the PWM port that the blinkin is attached to
+     */
     public GlowbotBlinkin(int port) {
         super();
-        pwmPort = port;
-        blinkin = new Spark(pwmPort);
+        blinkin = new Spark(port);
     }
 
-    public final int getPWMPort() {
-        return pwmPort;
-    }
-
+    /**
+     * @return The current decimal value set on the PWM output
+     */
     public final double getCurrentValue() {
         return currentValue;
     }

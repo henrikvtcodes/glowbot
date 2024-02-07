@@ -43,7 +43,7 @@ public class GlowbotBlinkinConstants {
         }
     }
 
-    /** Patterns that use one custom color. Used in conjuction with {@link Colors} */
+    /** Patterns that use one custom color. Used in conjuction with {@link Color} */
     public enum CustomPatternType {
         E2EBlendBlack(-0.03),
         LarsonScanner(-0.01),
@@ -79,7 +79,7 @@ public class GlowbotBlinkinConstants {
         EndToEndBlend(0.47),
         /**
          * Color 1 and Color 2 no blending <br>
-         * </br> <b>Setup Pattern</b>
+         *  <b>Setup Pattern</b>
          */
         Color1and2(0.49),
         SetupPattern(0.49),

@@ -1,9 +1,11 @@
-package com.orangeunilabs.glowbot.rio;
+package com.orangeunilabs.glowbot;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 import lombok.Getter;
-import lombok.Setter;
 
+/**
+ * GlowbotRioConfig is for more advanced use cases, i.e. if you're not using WS2812B or other compatible LEDs
+ */
 public class GlowbotRioConfig {
     @Getter
     public final int port, length;
