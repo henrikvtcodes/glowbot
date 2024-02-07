@@ -5,14 +5,16 @@
     "frcYear": "2024",
     "uuid": "a6f47264-c699-4761-ae19-7501fd7f5cca",
     "mavenUrls": [
-        "ThisNeedsToBeTheRootMavenUrl"
+        "https://s-cdn.orangeunilabs.com/frc/glowbot/repo"
     ],
-    "jsonUrl": "InsertSomeUrlHere",
+    "jsonUrl": "https://orangeunilabs.com/frc/glowbot/Glowbot.json",
     "javaDependencies": [
         {
             "groupId": "com.orangeunilabs.glowbot",
             "artifactId": "Glowbot-java",
-            "version": "0.0.1"
+            "version": "2024.0.1"
         }
-    ]
+    ],
+    "jniDependencies": [],
+    "cppDependencies": []
 }
