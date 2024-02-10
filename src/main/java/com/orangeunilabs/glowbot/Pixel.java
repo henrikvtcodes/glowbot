@@ -7,11 +7,13 @@ import edu.wpi.first.wpilibj.util.Color8Bit;
 /** Custom Representation of a single LED Pixel. */
 public final class Pixel {
     private AddressableLEDBuffer buffer;
-    int idx;
+    private final int idx;
+    private final int rootIdx;
 
     // Lack of `public` modifer prevents end users from instantiating
-    Pixel(AddressableLEDBuffer ledBuffer, int index) {
+    Pixel(AddressableLEDBuffer ledBuffer, int index, int rootIndex) {
         buffer = ledBuffer;
+        rootIdx = rootIndex;
         idx = index;
     }
 
@@ -23,7 +25,7 @@ public final class Pixel {
      * @return {@link Color} of this LED
      */
     public Color get() {
-        return buffer.getLED(idx);
+        return buffer.getLED(rootIdx);
     }
 
     /**
@@ -32,7 +34,7 @@ public final class Pixel {
      * @return {@link Color8Bit} of this LED
      */
     public Color8Bit get8Bit() {
-        return buffer.getLED8Bit(idx);
+        return buffer.getLED8Bit(rootIdx);
     }
 
     /** @return this LED's index in the buffer */
@@ -48,7 +50,7 @@ public final class Pixel {
      * @param color {@link Color} to set on this LED
      */
     public void set(Color color) {
-        buffer.setLED(idx, color);
+        buffer.setLED(rootIdx, color);
     }
 
     /**
@@ -57,7 +59,7 @@ public final class Pixel {
      * @param color {@link Color8Bit} to set on this LED
      */
     public void set(Color8Bit color) {
-        buffer.setLED(idx, color);
+        buffer.setLED(rootIdx, color);
     }
 
     /**
@@ -68,7 +70,7 @@ public final class Pixel {
      * @param b the b value [0-256)
      */
     public void setRGB(int r, int g, int b) {
-        buffer.setRGB(idx, clamp255(r), clamp255(g), clamp255(b));
+        buffer.setRGB(rootIdx, clamp255(r), clamp255(g), clamp255(b));
     }
 
     /**
@@ -79,12 +81,12 @@ public final class Pixel {
      * @param v the v value [0-256)
      */
     public void setHSV(int h, int s, int v) {
-        buffer.setHSV(idx, clamp180(h), clamp255(s), clamp255(v));
+        buffer.setHSV(rootIdx, clamp180(h), clamp255(s), clamp255(v));
     }
 
     /* -------- Private Helpers -------- */
 
-    // used to clamp R, G, B, S, and V values, in range [0, 255]
+    // used to clamp R, G, B, S, and V values, in range [0, 256)
     private int clamp255(int val) {
         return MathUtil.clamp(val, 0, 255);
     }
