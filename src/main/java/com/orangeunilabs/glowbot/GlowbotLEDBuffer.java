@@ -36,7 +36,8 @@ public class GlowbotLEDBuffer extends AddressableLEDBuffer implements Iterable<P
 
             @Override
             public Pixel next() {
-                return new Pixel(getBuffer(), currentIndex++);
+                currentIndex++;
+                return new Pixel(currentIndex, ()-> getLED(currentIndex), (Color color) -> setLED(currentIndex, color));
             }
 
             @Override
