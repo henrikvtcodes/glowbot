@@ -23,10 +23,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v3
-      - name: Set up JDK 11
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
@@ -39,10 +39,10 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           folder: docs
-          repository-name: FRC9015/FRC9015.github.io
+          repository-name: orangeunilabs/orangeunilabs.github.io
           branch: main
           clean: true
-          target-folder: docs/qelib/${{ github.event.release.tag_name }}
+          target-folder: frc/glowbot/${{ github.event.release.tag_name }}
           token: ${{ secrets.PAGES_DEPLOY_KEY }}
 
       - name: Update release description
