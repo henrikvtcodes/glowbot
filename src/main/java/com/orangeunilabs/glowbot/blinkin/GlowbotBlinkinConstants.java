@@ -1,13 +1,8 @@
-package frc.hvtc.roboled.blinkin;
+package com.orangeunilabs.glowbot.blinkin;
 
-/**
- * Enums that represent all the different color/pattern states of a Blinkin. <br>
- * </br> See page 14, the LED Pattern Table:
- * https://www.revrobotics.com/content/docs/REV-11-1105-UM.pdf
- */
-class BlinkinConstants {
+public class GlowbotBlinkinConstants {
     /** Blinkin built-in Color Schemes. Used in conjuction with {@link FixedPatternType} */
-    public static enum ColorScheme {
+    public enum ColorScheme {
         Rainbow(-0.09),
         Party(-0.07),
         Ocean(-0.05),
@@ -16,13 +11,13 @@ class BlinkinConstants {
 
         public final double val;
 
-        private ColorScheme(double val) {
+        ColorScheme(double val) {
             this.val = val;
         }
     }
 
     /** Patterns that use built-in color schemes. Used in conjuction with {@link ColorScheme} */
-    public static enum FixedPatternType {
+    public enum FixedPatternType {
         Rainbow(-0.9),
         Sinelon(-0.7),
         BeatsPerMinute(-0.6),
@@ -31,25 +26,25 @@ class BlinkinConstants {
 
         public final double val;
 
-        private FixedPatternType(double val) {
+        FixedPatternType(double val) {
             this.val = val;
         }
     }
 
     /** Select which custom color to use. Used in conjuction with {@link CustomPatternType} */
-    public static enum Color {
+    public enum Color {
         Color1(0.0),
         Color2(0.20);
 
         public final double val;
 
-        private Color(double val) {
+        Color(double val) {
             this.val = val;
         }
     }
 
-    /** Patterns that use one custom color. Used in conjuction with {@link Colors} */
-    public static enum CustomPatternType {
+    /** Patterns that use one custom color. Used in conjuction with {@link Color} */
+    public enum CustomPatternType {
         E2EBlendBlack(-0.03),
         LarsonScanner(-0.01),
         LightChase(0.01),
@@ -63,13 +58,13 @@ class BlinkinConstants {
 
         public final double val;
 
-        private CustomPatternType(double val) {
+        CustomPatternType(double val) {
             this.val = val;
         }
     }
 
-    /** Patterns that combine colors 1 and 2. */
-    public static enum CustomCombiPattern {
+    /** Patterns that combine custom colors 1 and 2. */
+    public enum CustomCombiPattern {
         /** Sparkle, Color 1 on Color 2 */
         Sparkle_1on2(0.37),
         /** Sparkle, Color 2 on Color 1 */
@@ -84,7 +79,7 @@ class BlinkinConstants {
         EndToEndBlend(0.47),
         /**
          * Color 1 and Color 2 no blending <br>
-         * </br> <b>Setup Pattern</b>
+         *  <b>Setup Pattern</b>
          */
         Color1and2(0.49),
         SetupPattern(0.49),
@@ -97,13 +92,13 @@ class BlinkinConstants {
 
         public final double val;
 
-        private CustomCombiPattern(double val) {
+        CustomCombiPattern(double val) {
             this.val = val;
         }
     }
 
     /** Built in solid colors. */
-    public static enum SolidColor {
+    public enum SolidColor {
         HotPink(0.57),
         DarkRed(0.59),
         Red(0.61),
@@ -130,7 +125,7 @@ class BlinkinConstants {
 
         public final double val;
 
-        private SolidColor(double val) {
+        SolidColor(double val) {
             this.val = val;
         }
     }

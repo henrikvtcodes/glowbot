@@ -1,39 +1,25 @@
-# RoboLED
+# WPILib Vendor Template
 
-[![](https://jitpack.io/v/henrikvtcodes/roboled.svg)](https://jitpack.io/#henrikvtcodes/roboled)
+This is the base WPILib vendor template for 2023.
 
-RoboLED is an LED control library for WPILib. It is based on the AddressableLED primitives in WPILib and aims to simplify the use of directly-connected addressable LEDs as well as provide a more complete foundation to build effects on. RoboLED also includes premade patterns to start from.
+## Layout
 
-### Docs
+The build is split into 3 libraries. A java library is built. This has access to all of wpilib, and also can JNI load the driver library.
 
-Not yet published.
+A driver library is built. This should contain all low level code you want to access from both C++, Java and any other text based language. This will not work with LabVIEW. This library has access to the WPILib HAL and wpiutil. This library can only export C symbols. It cannot export C++ symbols at all, and all C symbols must be explicitly listed in the symbols.txt file in the driver folder. JNI symbols must be listed in this file as well. This library however can be written in C++. If you attempt to change this library to have access to all of wpilib, you will break JNI access and it will no longer work.
 
-### How to Use
+A native C++ library is built. This has access to all of wpilib, and access to the driver library. This should implment the standard wpilib interfaces.
 
-First you have to add the JitPack repository (if you don't already have it) in your `build.gradle`:
+## Customizing
+For Java, the library name will be the folder name the build is started from, so rename the folder to the name of your choosing. 
 
-```gradle
-repositories {
-    maven {
-        url "https://jitpack.io/"
-    }
-    ... // Other repositories
-}
-```
+For the native impl, you need to change the library name in the exportsConfigs block of build.gradle, the components block of build.gradle, and the taskList input array name in publish.gradle.
 
-Next, just add the dependency!  
-[![](https://jitpack.io/v/henrikvtcodes/roboled.svg)](https://jitpack.io/#henrikvtcodes/roboled)```gradle
-dependecies {
-// Make sure to replace "TAG" with the most recent tag, seen above in the JitPack Icon
-implementation 'com.github.henrikvtcodes:RoboLED:TAG'
-}
+For the driver, change the library name in privateExportsConfigs, the driver name in components, and the driverTaskList input array name. In addition, you'll need to change the `lib library` in the native C++ impl component, and the JNI library name in the JNI java class.
 
-```
-> ℹ️ Note: We are considering adding support for downloading sub-packages in the future.
+For the maven artifact names, those are all in publish.gradle about 40 lines down.
 
-## In this package...
-- **Addressable LEDs**
-    - `LEDStrip`: WPILib's `AdressableLED` but with built in patterns and more!
-- **Blinkin**
-    - A declarative API for the REV Robotics Blinkin Module
-```
+## Building and editing
+This uses gradle, and uses the same base setup as a standard GradleRIO robot project. This means you build with `./gradlew build`, and can install the native toolchain with `./gradlew installRoboRIOToolchain`. If you open this project in VS Code with the wpilib extension installed, you will get intellisense set up for both C++ and Java.
+
+By default, this template builds against the latest WPILib development build. To build against the last WPILib tagged release, build with `./gradlew build -PreleaseMode`.

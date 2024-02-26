@@ -1,24 +1,10 @@
 {
-  "java.format.enabled": false,
-  "files.trimTrailingWhitespace": false,
-  "[java]": {
-    "spotlessGradle.diagnostics.enable": true,
-    "spotlessGradle.format.enable": true,
-    "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.spotlessGradle": false
-    },
-    "editor.suggest.snippetsPreventQuickSuggestions": true,
-    "editor.quickSuggestions": {
-      "comments": "on",
-      "strings": "off"
-    }
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
   },
-  "[gradle]": {
-    "files.trimTrailingWhitespace": false,
-    "spotlessGradle.diagnostics.enable": true,
-    "spotlessGradle.format.enable": true,
-    "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle"
-  },
-  "java.configuration.updateBuildConfiguration": "interactive"
+  "C_Cpp.default.configurationProvider": "vscode-wpilib"
 }

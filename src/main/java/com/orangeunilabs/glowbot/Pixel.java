@@ -1,22 +1,33 @@
-/* Copyright (c) 2023 Urban Inspire Corp 501(c)3 d.b.a. Questionable Engineering. All rights reserved. */
-/* This work is licensed under the terms of the MPL 2.0 license */
-/* found in the root directory of this project. */
-package frc.hvtc.roboled;
+package com.orangeunilabs.glowbot;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 
-/** Custom Representation of a single LED */
-public final class RLED {
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+/**
+ * Custom Representation of a single LED Pixel.
+ */
+public final class Pixel {
+    private final int idx;
+    /**
+     * Function that gets the pixel color
+     */
+    private final Supplier<Color> getter;
+    /**
+     * Function to set the pixel color
+     */
+    private final Consumer<Color> setter;
     private AddressableLEDBuffer buffer;
-    int idx;
 
     // Lack of `public` modifer prevents end users from instantiating
-    RLED(AddressableLEDBuffer ledBuffer, int index) {
-        buffer = ledBuffer;
+    Pixel(int index, Supplier<Color> colorGetter, Consumer<Color> colorSetter) {
         idx = index;
+        getter = colorGetter;
+        setter = colorSetter;
     }
 
     /* -------- GETTERS -------- */
@@ -27,7 +38,7 @@ public final class RLED {
      * @return {@link Color} of this LED
      */
     public Color get() {
-        return buffer.getLED(idx);
+        return getter.get();
     }
 
     /**
@@ -36,10 +47,12 @@ public final class RLED {
      * @return {@link Color8Bit} of this LED
      */
     public Color8Bit get8Bit() {
-        return buffer.getLED8Bit(idx);
+        return new Color8Bit(getter.get());
     }
 
-    /** @return this LED's index in the buffer */
+    /**
+     * @return this LED's index in the section
+     */
     public int getIndex() {
         return idx;
     }
@@ -52,7 +65,7 @@ public final class RLED {
      * @param color {@link Color} to set on this LED
      */
     public void set(Color color) {
-        buffer.setLED(idx, color);
+        setter.accept(color);
     }
 
     /**
@@ -61,34 +74,36 @@ public final class RLED {
      * @param color {@link Color8Bit} to set on this LED
      */
     public void set(Color8Bit color) {
-        buffer.setLED(idx, color);
+        setter.accept(new Color(color));
     }
 
     /**
-     * Set the color of this LED
+     * Set the color of this LED <br>
+     * Input values are clamped to the listed ranges.
      *
-     * @param r the r value [0-255]
-     * @param g the g value [0-255]
-     * @param b the b value [0-255]
+     * @param r the r value [0-256)
+     * @param g the g value [0-256)
+     * @param b the b value [0-256)
      */
     public void setRGB(int r, int g, int b) {
-        buffer.setRGB(idx, clamp255(r), clamp255(g), clamp255(b));
+        setter.accept(new Color(r, g, b));
     }
 
     /**
-     * Set the color of this LED
+     * Set the color of this LED <br>
+     * Input values are clamped to the listed ranges.
      *
      * @param h the h value [0-180)
-     * @param s the s value [0-255]
-     * @param v the v value [0-255]
+     * @param s the s value [0-256)
+     * @param v the v value [0-256)
      */
     public void setHSV(int h, int s, int v) {
-        buffer.setHSV(idx, clamp180(h), clamp255(s), clamp255(v));
+        setter.accept(Color.fromHSV(h, s, v));
     }
 
     /* -------- Private Helpers -------- */
 
-    // used to clamp R, G, B, S, and V values, in range [0, 255]
+    // used to clamp R, G, B, S, and V values, in range [0, 256)
     private int clamp255(int val) {
         return MathUtil.clamp(val, 0, 255);
     }
@@ -98,3 +113,4 @@ public final class RLED {
         return MathUtil.clamp(val, 0, 179);
     }
 }
+
