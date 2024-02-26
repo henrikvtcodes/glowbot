@@ -6,18 +6,17 @@ ext.licenseFile = files("$rootDir/LICENSE.txt") as DefaultConfigurableFileCollec
 
 def pubVersion = '2024.0.2'
 
-def outputsFolder = file("$rootProject.layout.buildDirectory/outputs")
+def outputsFolder = file("$buildDir/outputs")
 
 def versionFile = file("$outputsFolder/version.txt")
 
-tasks.register('outputVersions') {
+task outputVersions() {
     description = 'Prints the versions of wpilib to a file for use by the downstream packaging project'
     group = 'Build'
     outputs.files(versionFile)
 
     doFirst {
-        rootProject.layout.buildDirectory
-        rootProject.layout.buildDirectory.mkdir()
+        buildDir.mkdir()
         outputsFolder.mkdir()
     }
 
@@ -26,12 +25,12 @@ tasks.register('outputVersions') {
     }
 }
 
-tasks.register('libraryBuild') {}
+task libraryBuild() {}
 
 build.dependsOn outputVersions
 
-tasks.register('copyAllOutputs', Copy) {
-    destinationDir file("$rootProject.layout.buildDirectory/allOutputs")
+task copyAllOutputs(type: Copy) {
+    destinationDir file("$buildDir/allOutputs")
     from versionFile
     dependsOn outputVersions
 }
@@ -45,41 +44,35 @@ ext.addTaskToCopyAllOutputs = { task ->
     copyAllOutputs.from task.archiveFile
 }
 
+
 def artifactGroupId = 'com.orangeunilabs.glowbot'
 def baseArtifactId = 'Glowbot'
 def javaBaseName = "_Group_com_orangeunilabs_glowbot_ID_${baseArtifactId}-java_CLS"
 
-tasks.register('sourcesJar', Jar) {
-    dependsOn classes
+task sourcesJar(type: Jar, dependsOn: classes) {
     archiveClassifier = 'sources'
     from sourceSets.main.allSource
 }
 
-tasks.register('javadocJar', Jar) {
-    dependsOn javadoc
+task javadocJar(type: Jar, dependsOn: javadoc) {
     archiveClassifier = 'javadoc'
-
     from javadoc.destinationDir
 }
 
-tasks.register('outputJar', Jar) {
-    dependsOn classes
+task outputJar(type: Jar, dependsOn: classes) {
     archiveBaseName = javaBaseName
     destinationDirectory = outputsFolder
     from sourceSets.main.output
 }
 
-tasks.register('outputSourcesJar', Jar) {
-    dependsOn classes
+task outputSourcesJar(type: Jar, dependsOn: classes) {
     archiveBaseName = javaBaseName
     destinationDirectory = outputsFolder
     archiveClassifier = 'sources'
     from sourceSets.main.allSource
 }
 
-tasks.register('outputJavadocJar', Jar) {
-    dependsOn javadoc
-
+task outputJavadocJar(type: Jar, dependsOn: javadoc) {
     archiveBaseName = javaBaseName
     destinationDirectory = outputsFolder
     archiveClassifier = 'javadoc'
@@ -115,11 +108,12 @@ publishing {
     }
 }
 
-tasks.register('cleanReleaseRepo', Delete) {
+task cleanReleaseRepo(type: Delete) {
     delete releasesRepoUrl
 }
 
 tasks.matching {it != cleanReleaseRepo}.all {it.dependsOn cleanReleaseRepo}
+
 
 model {
     publishing {
