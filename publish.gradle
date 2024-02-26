@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 
 ext.licenseFile = files("$rootDir/LICENSE.txt") as DefaultConfigurableFileCollection
 
-def pubVersion = '2024.0.1'
+def pubVersion = '2024.0.2'
 
 def outputsFolder = file("$rootProject.layout.buildDirectory/outputs")
 
