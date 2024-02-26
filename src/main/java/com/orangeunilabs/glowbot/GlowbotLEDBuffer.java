@@ -48,13 +48,14 @@ public class GlowbotLEDBuffer extends AddressableLEDBuffer implements Iterable<P
     }
 
     /**
-     * Set a section of the LED strip to a color
+     * Set a section of the LED strip in the range [start, end] to a color
      *
-     * @param section Subsection of LEDs to set
+     * @param start the index of the first LED
+     * @param end the index of the last LED
      * @param color {@link Color}
      */
-    public void setRange(LEDSection section, Color color) {
-        for (int idx = section.startIdx; idx < section.endIdx; idx++) {
+    public void setRange(int start, int end, Color color) {
+        for (int idx = start; idx < end; idx++) {
             setLED(idx, color);
         }
     }
@@ -62,11 +63,12 @@ public class GlowbotLEDBuffer extends AddressableLEDBuffer implements Iterable<P
     /**
      * Set a section of the LED strip to a color
      *
-     * @param section Subsection of LEDs to set
+     * @param start the index of the first LED
+     * @param end the index of the last LED
      * @param color {@link Color8Bit}
      */
-    public void setRange(LEDSection section, Color8Bit color) {
-        for (int idx = section.startIdx; idx < section.endIdx; idx++) {
+    public void setRange(int start, int end, Color8Bit color) {
+        for (int idx = start; idx < end; idx++) {
             setLED(idx, color);
         }
     }
