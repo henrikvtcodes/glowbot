@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.util.Color8Bit;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,7 +19,9 @@ import java.util.Iterator;
 public class GlowbotRio implements AutoCloseable, GlowbotControllable {
     public static final int PERIODIC_UPDATE_FREQUENCY_HERTZ = 50;
     private static int instanceCount = 0;
-    public final int length, port;
+    @Getter
+    public final int length;
+    public final int port;
     private final String name;
 
     private final AddressableLED ledStrip;
