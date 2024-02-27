@@ -119,8 +119,5 @@ jobs:
           destination: "frc/glowbot/repo/com/orangeunilabs/glowbot/Glowbot-java"
           upload: "true"
           remove: "false"
-          purgePullZone: "true"
-          storageZoneName: "${{ secrets.STORAGE_NAME }}"
+          storageZoneName: "${{ env.STORAGE_NAME }}"
           storagePassword: "${{ secrets.STORAGE_PASSWORD }}"
-          accessKey: "${{ secrets.STORAGE_KEY }}"
-
