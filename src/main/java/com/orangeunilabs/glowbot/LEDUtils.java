@@ -1,9 +1,19 @@
 package com.orangeunilabs.glowbot;
 
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.util.Color8Bit;
+import lombok.experimental.UtilityClass;
 
+import java.util.Random;
+
+/**
+ * This has some generally useful methods for working with colors in the context of WPILib
+ */
+@UtilityClass
 public class LEDUtils {
+    private final Random rand = new Random((long) (Timer.getFPGATimestamp() + Timer.getMatchTime()));
 
     /**
      * Convert a set of RGB values to a set of HSV values in WPILib convention
@@ -73,5 +83,26 @@ public class LEDUtils {
      */
     public static int[] rgbToHsv(Color8Bit color) {
         return rgbToHsv(color.red, color.blue, color.green);
+    }
+
+    public static Color randomColor() {
+        return new Color(rand.nextInt(0, 255), rand.nextInt(0, 255), rand.nextInt(0, 255));
+    }
+
+    /* Credit for randomShift and randomColorShift methods goes to FRC team 5013, Trobots */
+
+    /**
+     * Randomly shift the RGB values in a color
+     * @param aColor a color
+     * @return that input color shifted around randomly
+     */
+    public static Color randomColorShift(Color aColor){
+        return new Color(randomShift(aColor.red),randomShift(aColor.green),randomShift(aColor.blue));
+    }
+
+    private static double randomShift(double value){
+        double sign = rand.nextDouble() >= 0.5 ? 1.0 : -1.0;
+        double amount = Math.random() / 10;
+        return MathUtil.clamp(value + sign * amount, 0, 1);
     }
 }
