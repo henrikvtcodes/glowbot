@@ -91,10 +91,6 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 17
-      - uses: actions/upload-artifact@v3
-        with:
-          name: Maven
-          path: ~/releases
 
       - name: Generate sources
         run: ./gradlew publish -PreleaseMode
