@@ -43,4 +43,6 @@ public interface GlowbotControllable extends Iterable<Pixel> {
     void setRange(int start, int end, Color8Bit color);
 
     void setRange(int start, int end, Color color);
+
+    int getLength();
 }
