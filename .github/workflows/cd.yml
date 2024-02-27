@@ -112,6 +112,9 @@ jobs:
           name: Maven
           path: ~/releases
 
+      - name: Generate sources
+        run: ./gradlew publish -PreleaseMode
+
       - name: Upload to Bunny CDN
         uses: ayeressian/bunnycdn-storage-deploy@v2.2.1
         with:
