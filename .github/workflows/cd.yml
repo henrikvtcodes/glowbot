@@ -117,7 +117,7 @@ jobs:
         with:
           source: "build/repos/releases/com/orangeunilabs/glowbot/Glowbot-java"
           destination: "frc/glowbot/repo/com/orangeunilabs/glowbot/Glowbot-java"
+          storageZoneName: "oulabs1"
+          storagePassword: "${{ secrets.STORAGE_PASSWORD }}"
           upload: "true"
           remove: "false"
-          storageZoneName: "${{ env.STORAGE_NAME }}"
-          storagePassword: "${{ secrets.STORAGE_PASSWORD }}"
